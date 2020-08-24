@@ -23,7 +23,7 @@ function getRandomNumber(min, max) {
 async function getAlbum(user, period, minPlayCount) {
   console.log(`getAlbum::${user}::${period}::${minPlayCount}`);
   try {
-  const response = await axios.get(`${getURL(user, period)}&limit=1`);
+  const response = await axios.get(`${getURL(encodeURIComponent(user), period)}&limit=1`);
   if (!response)
     return {
       status: "error",
@@ -31,6 +31,7 @@ async function getAlbum(user, period, minPlayCount) {
   const total = response.data.topalbums["@attr"].totalPages;
   return getRandomAlbum(user, period, total, minPlayCount); 
   } catch (error) {
+    console.log(error);
     return {
       status: "error",
       error: error.msg
@@ -48,7 +49,7 @@ async function getAlbum(user, period, minPlayCount) {
   
   const albumIndex = getRandomNumber(1, total);
    try {
-  const response = await axios.get(`${getURL(user, period)}&limit=1&page=${albumIndex}`);
+  const response = await axios.get(`${getURL(encodeURIComponent(user), period)}&limit=1&page=${albumIndex}`);
   if (!response)
     return {
       status: "error",

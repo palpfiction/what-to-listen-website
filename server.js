@@ -1,16 +1,9 @@
-
-// init project
 const express = require('express');
 const app = express();
 const getAlbum = require('./what-to-listen');
 
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
-
-// http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
-
-// http://expressjs.com/en/starter/basic-routing.html
+app.use(checkHttps);
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
@@ -26,7 +19,18 @@ app.get('/get-album', async function(req, res) {
   if (result.status === "notFound") res.send( { } );
 });
 
-// listen for requests :)
 const listener = app.listen(process.env.PORT, function() {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+
+function checkHttps(req, res, next){
+  // protocol check, if http, redirect to https
+  
+  if(req.get('X-Forwarded-Proto').indexOf("https")!=-1){
+    console.log("https, yo")
+    return next()
+  } else {
+    console.log("just http")
+    res.redirect('https://' + req.hostname + req.url);
+  }
+}

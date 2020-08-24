@@ -2,57 +2,78 @@
 <html lang="en">
   <head>
     <title>what to listen?</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
-    
+    <link rel="stylesheet" href="/style.css" />
     <!-- import the webpage's javascript file -->
     <script src="/script.js" defer></script>
-  </head>  
+  </head>
   <body>
-    <h1>what to listen?</h1>
-    <div>
-      <p>
-        don't know what to listen? want to come back to an album you haven't listened for a while?
-      </p>
-      <p>
-        just put your <i>last.fm</i> account and ✨magic✨ will happen!
-      </p>
-    </div>
-    <hr/>
+    <header>
+      <h1>what to listen?</h1>
+      <div id="description">
+        <p>
+          don't know what to listen? want to come back to an album you haven't
+          listened for a while?
+        </p>
+        <p>just put your <i>last.fm</i> account and ✨magic✨ will happen!</p>
+        <hr />
+      </div>
+    </header>
     <form id="form">
-      <label for="account" style="display: block; font-weight: bold;">last.fm account</label>
-      <input id="account" type="text" required/>
-      <label for="minPlays" style="display: block; font-weight: bold; margin: 1.3em 0 0 0">minimun plays</label>
-      <input id="minPlays" type="number" value="10"/>
-       <button id="button" type="submit">
+      <label for="account" style="display: block; font-weight: bold;"
+        >last.fm account</label
+      >
+      <input id="account" type="text" required />
+
+      <label
+        for="minPlays"
+        style="display: block; font-weight: bold; margin: 1.3em 0 0 0"
+        >minimum plays</label
+      >
+      <small id="minPlaysSmall"
+        >number of times you've played songs from that album</small
+      >
+      <input id="minPlays" type="number" value="10" />
+
+      <label
+        for="period"
+        style="display: block; font-weight: bold; margin: 1.3em 0 0 0"
+        >time period</label
+      >
+      <select id="period">
+        <option value="overall">overall</option>
+        <option value="7day">7 days</option>
+        <option value="1month">1 month</option>
+        <option value="3month">3 months</option>
+        <option value="6month">6 months</option>
+        <option value="12month">12 months</option>
+      </select>
+
+      <button id="button" type="submit">
         give me an album!
       </button>
     </form>
-    
-      <div id="spinner" class="spinner" style="display: none;">
-        <div class="rect1"></div>
-        <div class="rect2"></div>
-        <div class="rect3"></div>
-        <div class="rect4"></div>
-      </div>
-      
-      <div id="error" class="error" style="display: none;">
-        well that didn't work... is your account ok?
-      </div>
-    
+    <div id="spinner" class="spinner" style="display: none;">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+    </div>
+    <div id="album"></div>
+    <div id="error2" class="error" >
+    </div>
+    <div id="error" class="error" style="display: none;">
+      well that didn't work... is your account ok?
+    </div>
     <div id="no-album" class="error" style="display: none;">
       i couldn't find an album with that number of plays...
     </div>
     
-      <div id="album" >
-    </div>
-      
-      <a id="try-again" class="try-again" style="display:none;">
-        want to try again?
-      </a>
   </body>
+  <footer>
+    made with ❤️ and 🎶 by <a href="https://twitter.com/NowherePalp">palp</a> and powered by <a href="https://www.last.fm/">last.fm</a>
+  </footer>
 </html>
